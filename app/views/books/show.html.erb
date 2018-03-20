@@ -1,7 +1,14 @@
-<span class="big-grid">
-  <h2 class="teal-font"><span class="title">📕<%= @book[:title] %>📕</span></h2>
-  <h3>- by <%= @book[:author] %></h3>
-  <p>
-  Review: <%= @book[:review] %>
-  </p>
-</span>
+<h2 class="teal-font"><span class="title">📕<%= @book.title %>📕</span></h2>
+<h3>-<%= @book.author %></h3>
+<p>
+  Review: <%= @book.description %>
+</p>
+
+<ul>
+  <li>
+    <%= link_to "Edit", edit_book_path %>
+  </li>
+  <li>
+    <%= link_to "Delete", book_path(@book.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+  </li>
+</ul>

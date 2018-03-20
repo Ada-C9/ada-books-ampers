@@ -9,6 +9,20 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <%= link_to "Home", books_path %>
+          </li>
+          <li>
+            <%= link_to "Add a Book", new_book_path %>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+        <%= yield %>
+    </main>
   </body>
 </html>

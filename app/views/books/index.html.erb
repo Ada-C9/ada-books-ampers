@@ -3,9 +3,9 @@
 <% @books.each do |book| %>
   <li>
     <span class="title">
-      <%= link_to book[:title], book_path(book[:id]), class: 'teal-font' %>
+      <%= link_to book.title, book_path(book.id), class: 'teal-font' %>
     </span>
-    by <%= book[:author] %>
+    by <%= book.author %>
   </li>
 <% end %>
 <ul>
