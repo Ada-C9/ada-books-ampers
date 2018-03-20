@@ -13,3 +13,26 @@
  *= require_tree .
  *= require_self
  */
+
+span.title {
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: gold;
+}
+
+.teal-font {
+  color: teal;
+  font-size: 4em;
+}
+
+h3 {
+  font-size: 3em;
+  /* align-text: flex-end; */
+}
+
+.big-grid {
+  display: grid;
+  justify-content;
+  margin: 5em;
+}

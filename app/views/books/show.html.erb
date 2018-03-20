@@ -1,2 +1,7 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<span class="big-grid">
+  <h2 class="teal-font"><span class="title">📕<%= @book[:title] %>📕</span></h2>
+  <h3>- by <%= @book[:author] %></h3>
+  <p>
+  Review: <%= @book[:review] %>
+  </p>
+</span>
