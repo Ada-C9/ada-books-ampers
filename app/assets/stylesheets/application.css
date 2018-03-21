@@ -14,25 +14,64 @@
  *= require_self
  */
 
+ * {
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+   font-weight: 300;
+   color: rgb(50, 92, 126);
+ }
+
+body {
+  margin: 2em;
+  display: grid;
+}
+
 span.title {
-  font-weight: bold;
-  text-decoration: underline;
-  text-decoration-style: wavy;
   text-decoration-color: gold;
 }
 
-.teal-font {
-  color: teal;
-  font-size: 4em;
+a {
+  text-decoration: none;
+}
+
+a:* {
+  color: inherit;
 }
 
 h3 {
-  font-size: 3em;
+  font-size: 1.2em;
   /* align-text: flex-end; */
+}
+
+nav {
+  padding-bottom: 1em;
+}
+
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.teal-font {
+  font-size: 1.2em;
 }
 
 .big-grid {
   display: grid;
   justify-content;
   margin: 5em;
+}
+
+
+
+.book-name {
+  font-weight: 500;
+  font-size: 1.2em;
+  padding: 0;
+  margin: 0;
+}
+
+.book-name + ul {
+  margin-left: 2em;
 }
