@@ -24,6 +24,14 @@
           <li>
             <%= link_to "Add an Author", new_author_path %>
           </li>
+          <% if @user %>
+            <li>
+              Welcome <%= @user.name %>
+              <%= link_to "Logout", logout_path, method: :delete %>
+            </li>
+          <% else %>
+             <%= link_to "Login", login_form_path %>
+          <% end %>
         </ul>
       </nav>
     </header>

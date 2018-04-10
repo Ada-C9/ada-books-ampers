@@ -1,0 +1,20 @@
+
+Save successfully
+  - Create
+  - Edit
+  - Destroy
+Errors
+  - Create
+  - Edit
+  - Destroy
+
+Student do on Book
+
+Session
+- Generate Sessions controller (Create, destroy)
+
+- Log in
+- Display current User
+- Log out
+- Prevent Create or Edit from unauth user
+-

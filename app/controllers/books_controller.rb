@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
 
   def index
+    @user = User.find_by(id: session[:user_id] )
     # If we are in a nested route (/authors/7/books), we don't want @books to be Book.all, we want @books to just be the author's books
     if params[:author_id]
       author = Author.find_by(id: params[:author_id])
@@ -74,6 +75,7 @@ class BooksController < ApplicationController
   def book_params
     return params.require(:book).permit(:author_id, :description, :title, genre_ids: [])
   end
+
 
 
 
