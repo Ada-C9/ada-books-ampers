@@ -1,0 +1,17 @@
+users(:bob).name = nil
+
+User Model
+
+  - Validations:
+    - No Blank Username
+    - Uniqueness
+  - Relationships
+    - Votes
+  - Methods
+
+
+Work Model
+  -Custom Method
+    - Total Votes
+  - Validations
+    - Publication year > today\

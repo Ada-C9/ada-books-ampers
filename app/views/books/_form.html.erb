@@ -1,5 +1,5 @@
 <h2 class="my-class"><%= page_title %></h2>
-<% if @book.errors.any? %>
+<!-- <% if @book.errors.any? %>
   <ul class="errors">
     <% @book.errors.each do |field, message| %>
       <li>
@@ -7,7 +7,7 @@
       </li>
     <% end %>
   </ul>
-<% end %>
+<% end %> -->
 <%= form_for @book, url: @action do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>

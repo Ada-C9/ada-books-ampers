@@ -27,8 +27,11 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.author = Author.find(params[:author_id])
     if @book.save
+      flash[:success] = "#{@book.title} saved"
       redirect_to root_path
     else
+      flash.now[:alert] = @book.errors
+
       render :new
     end
   end
@@ -54,9 +57,14 @@ class BooksController < ApplicationController
 
   def destroy
     id = params[:id]
-    @book = Book.find(id)
-    if @book
-      @book.destroy
+    begin
+      @book = Book.find(id)
+      if @book
+        @book.destroy
+      end
+      flash[:success] = "#{@book.title} deleted"
+    rescue
+      flash[:alert] = "Book does not exist"
     end
     redirect_to books_path
   end
