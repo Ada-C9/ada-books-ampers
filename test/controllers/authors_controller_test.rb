@@ -1,39 +1,75 @@
 require "test_helper"
+require 'pry'
 
 describe AuthorsController do
   it "should get index" do
-    get authors_index_url
-    value(response).must_be :success?
+    # Arrange
+
+    # Act
+    get authors_path
+
+    # Assert
+    must_respond_with :success
   end
 
-  it "should get show" do
-    get authors_show_url
-    value(response).must_be :success?
+  describe "edit" do
+    it "should successfully get to an edit page for an author that exists" do
+
+      get edit_author_path authors(:metz).id
+
+      must_respond_with :success
+    end
+
+    it "should redirect to the home page when going to the edit page of an author that does not exist" do
+
+      get edit_author_path 'foo'
+
+      must_respond_with :redirect
+      must_redirect_to root_path
+    end
   end
 
-  it "should get edit" do
-    get authors_edit_url
-    value(response).must_be :success?
+  describe "create" do
+
+    it "successfully creates an author with valid data" do
+
+      proc {
+        post authors_path, params: {
+          author: {
+            name: "New Author"
+          }
+        }
+      }.must_change 'Author.count', 1
+
+      must_respond_with :redirect
+      must_redirect_to authors_path
+    end
+
   end
 
-  it "should get update" do
-    get authors_update_url
-    value(response).must_be :success?
+  describe "update" do
+
+    it "updates an Author's name when given a valid name and valid author" do
+      # Arrange
+      updated_name = "deeface"
+
+
+      # Act
+      put author_path authors(:dee).id , params: {
+        author: {
+          name: updated_name
+        }
+      }
+
+      updated_author = Author.find(authors(:dee).id)
+
+      updated_author.name.must_equal updated_name
+
+      must_respond_with :redirect
+    end
+
   end
 
-  it "should get new" do
-    get authors_new_url
-    value(response).must_be :success?
-  end
 
-  it "should get create" do
-    get authors_create_url
-    value(response).must_be :success?
-  end
-
-  it "should get destroy" do
-    get authors_destroy_url
-    value(response).must_be :success?
-  end
 
 end
