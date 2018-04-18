@@ -1,17 +1,67 @@
 class SessionsController < ApplicationController
-  def create
-    @user = User.find_by name: params[:user][:name]
 
-    if @user
-      session[:user_id] = @user.id
-      # session[:user_name] = @user.name
-      flash[:success] = "Welcome back #{@user.name}"
+  def create
+    auth_hash = request.env['omniauth.auth']
+
+    if auth_hash[:uid]
+      @user = User.find_by(uid: auth_hash[:uid], provider: 'github')
+
+      if @user.nil?
+        @user = User.build_from_github(auth_hash)
+        successful_save = @user.save
+        if successful_save
+          flash[:success] = "Logged in successfully"
+          session[:user_id] = @user.id
+          redirect_to root_path
+        else
+          flash[:error] = "Some error happened in User creation"
+          redirect_to root_path
+        end
+      else
+        flash[:success] = "Logged in successfully"
+        session[:user_id] = @user.id
+        redirect_to root_path
+      end
+
     else
-      @user = User.create name: params[:user][:name]
-      session[:user_id] = @user.id
-      flash[:success] = "Welcome #{@user.name}"
+      flash[:error] = "Logging in through GitHub not successful"
+      redirect_to root_path
     end
-    redirect_to root_path
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # @user = User.find_by name: params[:user][:name]
+    #
+    # if @user
+    #   session[:user_id] = @user.id
+    #   # session[:user_name] = @user.name
+    #   flash[:success] = "Welcome back #{@user.name}"
+    # else
+    #   @user = User.create name: params[:user][:name]
+    #   session[:user_id] = @user.id
+    #   flash[:success] = "Welcome #{@user.name}"
+    # end
+    # redirect_to root_path
   end
 
   def new
